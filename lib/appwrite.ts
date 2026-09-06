@@ -3,15 +3,13 @@ import { Account, Client, ID, Permission, Query, Role, TablesDB } from "appwrite
 export const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID ?? "pace";
 export const tasksTableId = process.env.NEXT_PUBLIC_APPWRITE_TASKS_TABLE_ID ?? "tasks";
 
-const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT;
-const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID;
+const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ?? "https://sgp.cloud.appwrite.io/v1";
+const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID ?? "pace";
 
-const client = endpoint && projectId
-  ? new Client().setEndpoint(endpoint).setProject(projectId)
-  : null;
+const client = new Client().setEndpoint(endpoint).setProject(projectId);
 
-export const account = client ? new Account(client) : null;
-export const tablesDB = client ? new TablesDB(client) : null;
+export const account = new Account(client);
+export const tablesDB = new TablesDB(client);
 export { ID, Permission, Query, Role };
 
 export function getAppwriteServices() {
