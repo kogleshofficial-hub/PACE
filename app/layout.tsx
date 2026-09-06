@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   creator: "Koglesh R. Murugan",
   keywords: ["student planner", "academic planner", "study planner", "workload planner", "PACE"],
   alternates: { canonical: "/" },
+  verification: {
+    google: "LI6z3Avdq6RsVP2faZ6nlhcbRwvnMIdjJkrSBygvnZM",
+  },
   openGraph: {
     type: "website",
     url: siteUrl,
