@@ -3,7 +3,7 @@ import { Account, Client, ID, Permission, Query, Role, TablesDB } from "appwrite
 function readPublicEnv(name: string, fallback: string) {
   const value = process.env[name]?.trim();
   if (!value) return fallback;
-  return value.replace(/^(\[\"'])(.*)\1$/, "$2").trim();
+  return value.replace(/^([\"'])(.*)\1$/, "$2").trim();
 }
 
 export const databaseId = readPublicEnv("NEXT_PUBLIC_APPWRITE_DATABASE_ID", "pace");
