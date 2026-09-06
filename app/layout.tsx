@@ -4,8 +4,6 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "PACE — Academic workload, made realistic.",
   description: "PACE turns assignments, exams, effort, priorities, and available study time into a realistic academic plan.",
-  metadataBase: new URL("https://pace-planner.vercel.app"),
-  verification: { google: "REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_TOKEN" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
