@@ -1,10 +1,19 @@
 import { Account, Client, ID, Permission, Query, Role, TablesDB } from "appwrite";
 
-export const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID ?? "pace";
-export const tasksTableId = process.env.NEXT_PUBLIC_APPWRITE_TASKS_TABLE_ID ?? "tasks";
+function readPublicEnv(name: string, fallback: string) {
+  const value = process.env[name]?.trim();
+  if (!value) return fallback;
+  return value.replace(/^(["'])(.*)\1$/, "$2").trim();
+}
 
-const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT ?? "https://sgp.cloud.appwrite.io/v1";
-const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID ?? "pace";
+export const databaseId = readPublicEnv("NEXT_PUBLIC_APPWRITE_DATABASE_ID", "pace");
+export const tasksTableId = readPublicEnv("NEXT_PUBLIC_APPWRITE_TASKS_TABLE_ID", "tasks");
+
+const endpoint = readPublicEnv(
+  "NEXT_PUBLIC_APPWRITE_ENDPOINT",
+  "https://sgp.cloud.appwrite.io/v1"
+).replace(/\/$/, "");
+const projectId = readPublicEnv("NEXT_PUBLIC_APPWRITE_PROJECT_ID", "pace");
 
 const client = new Client().setEndpoint(endpoint).setProject(projectId);
 
