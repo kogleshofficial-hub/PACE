@@ -2,11 +2,15 @@
 
 **Academic workload, made realistic.**
 
-PACE is a student-focused workload planner designed for the CSC Back-to-School Hackathon. It helps students understand whether their assignments can realistically fit into the study time they have, then surfaces a clear next action.
+PACE is a student-focused workload planner built for the CSC Back-to-School Hackathon. It answers a practical question: **what should I work on next, and can I realistically finish everything before it is due?**
+
+## Live
+
+**https://pace-nu-seven.vercel.app/**
 
 ## The problem
 
-Students often have a list of assignments but no practical answer to: **What should I work on next, and can I realistically finish everything before it is due?**
+Students often have a list of assignments but no practical answer to whether the workload actually fits the time they have.
 
 PACE combines:
 
@@ -15,41 +19,75 @@ PACE combines:
 - estimated effort
 - priority
 - daily study capacity
-- a seven-day planning view
-- explainable next-task recommendations
+- seven-day planning
 - workload pressure visibility
+- explainable next-task recommendations
+- automatic rebalancing as work is completed
 
-## Current build
+## How it works
 
-The repository currently contains the competition-specific PACE interface and planning experience. The project is being developed substantially during the CSC Back-to-School Hackathon period.
+```text
+CAPTURE
+   ↓
+UNDERSTAND
+   ↓
+ALLOCATE
+   ↓
+ACT
+   ↓
+RECALCULATE
+```
 
-### Pre-existing foundation disclosure
+The planner considers deadlines, estimated effort, priority and available capacity instead of treating every task as an equal checkbox.
 
-PACE is an independently developed competition-specific evolution of the author's earlier project, **SYNAPSE**. The earlier project established the general workload-planning concept and some engineering patterns. PACE is not presented as a project built from zero: the prior foundation is disclosed here, while the student-focused product direction, interface, academic workflow, and additional competition development are being developed during the official CSC hackathon period.
+## Multi-user architecture
 
-This disclosure is intentional and follows the CSC requirement that pre-existing code, projects, designs, datasets, or other major assets be clearly disclosed.
+PACE is built as a real multi-user application rather than a shared demo state.
 
-## Privacy architecture
+- **Authentication:** Appwrite Account
+- **Database:** Appwrite TablesDB
+- **User isolation:** every task carries its authenticated `userId`
+- **Row permissions:** users receive read/update/delete access only to their own rows
+- **Frontend:** Next.js + React + TypeScript
+- **Deployment:** Vercel
 
-PACE is designed around local-first planning. No account is required for the planning experience, and workload data is not intentionally sent to a PACE server or exposed as a shared student feed. A future production release must preserve this privacy boundary and make any external data processing explicit.
-
-## AI disclosure
-
-AI coding assistants may be used during development for brainstorming, implementation assistance, debugging, documentation, and review. The creator remains responsible for understanding, testing, and validating the final implementation and competition claims.
+The application filters task queries by the authenticated user's ID and assigns row-level permissions when tasks are created.
 
 ## Technology
 
-- Next.js
-- React
+- Next.js 15
+- React 19
 - TypeScript
+- Appwrite
 - CSS
-- Browser APIs
-- Vercel-ready deployment
+- Lucide React
+- Vercel
+- GitHub
 
-## CSC fit
+## Competition
 
-The CSC Back-to-School Hackathon asks students to build technology that solves a real school-life problem. PACE focuses directly on academic workload, scheduling, organization, and realistic study capacity.
+PACE was developed for the **CSC Back-to-School Hackathon** and submitted as an independently developed project.
 
-## Status
+The product direction focuses on academic workload, realistic capacity, prioritization and actionable planning.
 
-Active competition build. Features are being developed, tested, and hardened during the official hackathon period.
+## Pre-existing foundation disclosure
+
+PACE is an independently developed competition-specific evolution of the author's earlier project, **SYNAPSE**. SYNAPSE established the broader workload-planning concept and some engineering patterns. PACE extends that foundation into a distinct student-focused product with its own interface, authentication, database architecture, per-user permissions, workload workflow and production implementation.
+
+This relationship is disclosed intentionally rather than presenting PACE as an unrelated project built without prior work.
+
+## AI disclosure
+
+AI coding assistants may be used during development for brainstorming, implementation assistance, debugging, documentation and review. The creator remains responsible for understanding, testing and validating the final implementation and competition claims.
+
+## Author
+
+**Koglesh R. Murugan**
+
+Independent student developer · Malaysia
+
+## Links
+
+- **Live:** https://pace-nu-seven.vercel.app/
+- **GitHub:** https://github.com/kogleshofficial-hub/PACE
+- **Portfolio:** https://koglesh-portfolio.vercel.app/
